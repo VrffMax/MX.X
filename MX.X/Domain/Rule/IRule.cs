@@ -1,10 +1,10 @@
 ﻿using System.Threading.Tasks;
 
-namespace MX.X.Rule
+namespace MX.X.Domain.Rule
 {
     public interface IRule<T>
         where T : RuleCommand
     {
-        Task<bool> IsMatch(T rule);
+        Task<bool> IsMatchAsync(T rule);
     }
 }

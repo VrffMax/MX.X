@@ -1,7 +1,7 @@
 ﻿using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace MX.X.Rule
+namespace MX.X.Domain.Rule
 {
     public abstract class Rule<T>
         : IRule<T> where T : RuleCommand
@@ -11,7 +11,7 @@ namespace MX.X.Rule
         public Rule(string pattern) =>
             _regex = new Regex($"^{pattern}$", RegexOptions.Compiled);
 
-        public Task<bool> IsMatch(T rule) =>
+        public Task<bool> IsMatchAsync(T rule) =>
             Task.FromResult(_regex.IsMatch(rule.Expression));
     }
 }

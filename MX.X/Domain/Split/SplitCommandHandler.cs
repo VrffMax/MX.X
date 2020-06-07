@@ -3,7 +3,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
 
-namespace MX.X.Split
+namespace MX.X.Domain.Split
 {
     public abstract class SplitCommandHandler<T, R>
         : IRequestHandler<T, IEnumerable<R>> where T : SplitCommand<R>
@@ -14,6 +14,6 @@ namespace MX.X.Split
             _split = split;
 
         public Task<IEnumerable<R>> Handle(T request, CancellationToken cancellationToken) =>
-            _split.Match(request);
+            _split.SplitAsync(request);
     }
 }

@@ -26,7 +26,10 @@ namespace MX.X
                     break;
                 }
 
-                var result = await _mediator.Send(new NumberSplitCommand { Expression = expression });
+                var values = await _mediator.Send(new NumberSplitCommand { Expression = expression });
+                var result = await _mediator.Send(new NumberAggregateCommand { Values = values });
+
+                Console.WriteLine(result);
             }
             while (false);
 

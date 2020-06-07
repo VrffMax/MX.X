@@ -1,4 +1,4 @@
-﻿using MX.X.Split;
+﻿using MX.X.Domain.Split;
 
 namespace MX.X.Command.Number
 {

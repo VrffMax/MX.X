@@ -1,6 +1,6 @@
 ﻿using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using MX.X.Split;
+using MX.X.Domain.Split;
 
 namespace MX.X.Command.Number
 {

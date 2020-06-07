@@ -11,8 +11,10 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Command\" />
-    <Folder Include="Rule\" />
-    <Folder Include="Split\" />
     <Folder Include="Command\Number\" />
+    <Folder Include="Domain\" />
+    <Folder Include="Domain\Rule\" />
+    <Folder Include="Domain\Split\" />
+    <Folder Include="Domain\Aggregate\" />
   </ItemGroup>
 </Project>

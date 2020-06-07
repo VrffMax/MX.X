@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using MediatR;
 
-namespace MX.X.Split
+namespace MX.X.Domain.Split
 {
     public abstract class SplitCommand<R>
         : IRequest<IEnumerable<R>>

@@ -1,4 +1,4 @@
-﻿using MX.X.Rule;
+﻿using MX.X.Domain.Rule;
 
 namespace MX.X.Command.Number
 {

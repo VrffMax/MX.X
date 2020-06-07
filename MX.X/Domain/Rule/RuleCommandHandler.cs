@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using MediatR;
 
-namespace MX.X.Rule
+namespace MX.X.Domain.Rule
 {
     public abstract class RuleCommandHandler<T>
         : IRequestHandler<T, bool> where T : RuleCommand
@@ -13,6 +13,6 @@ namespace MX.X.Rule
             _rule = rule;
 
         public Task<bool> Handle(T request, CancellationToken cancellationToken) =>
-            _rule.IsMatch(request);
+            _rule.IsMatchAsync(request);
     }
 }

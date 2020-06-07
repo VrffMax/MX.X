@@ -12,5 +12,7 @@
   <ItemGroup>
     <Folder Include="Command\" />
     <Folder Include="CommandHandler\" />
+    <Folder Include="CommandRule\" />
+    <Folder Include="Rule\" />
   </ItemGroup>
 </Project>

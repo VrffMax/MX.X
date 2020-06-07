@@ -13,7 +13,7 @@ namespace MX.X
 
         public static async Task Main(string[] args)
         {
-            var result = await _mediator.Send(new SemaphoreCommand());
+            var result = await _mediator.Send(new NumberCommand { Expression = " -1 + 2 - 3 + 4 - 5 " });
 
             Console.WriteLine(nameof(Task.CompletedTask));
         }
@@ -34,7 +34,7 @@ namespace MX.X
             });
 
             builder
-                .RegisterAssemblyTypes(typeof(SemaphoreCommand).GetTypeInfo().Assembly)
+                .RegisterAssemblyTypes(typeof(NumberCommand).GetTypeInfo().Assembly)
                 .AsImplementedInterfaces();
 
             return builder.Build().Resolve<IMediator>();

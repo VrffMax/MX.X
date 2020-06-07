@@ -11,8 +11,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Command\" />
-    <Folder Include="CommandHandler\" />
-    <Folder Include="CommandRule\" />
     <Folder Include="Rule\" />
+    <Folder Include="Split\" />
+    <Folder Include="Command\Number\" />
   </ItemGroup>
 </Project>

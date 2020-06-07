@@ -3,7 +3,7 @@ using System.Reflection;
 using System.Threading.Tasks;
 using Autofac;
 using MediatR;
-using MX.X.Command;
+using MX.X.Command.Number;
 
 namespace MX.X
 {
@@ -13,7 +13,22 @@ namespace MX.X
 
         public static async Task Main(string[] args)
         {
-            var result = await _mediator.Send(new NumberCommand { Expression = " -1 + 2 - 3 + 4 - 5 " });
+            bool allow;
+
+            var expression = " - 1 + 2 - 3 + 4 - 5 ";
+
+            do
+            {
+                allow = await _mediator.Send(new NumberRuleCommand { Expression = expression });
+
+                if (!allow)
+                {
+                    break;
+                }
+
+                var result = await _mediator.Send(new NumberSplitCommand { Expression = expression });
+            }
+            while (false);
 
             Console.WriteLine(nameof(Task.CompletedTask));
         }
@@ -34,7 +49,7 @@ namespace MX.X
             });
 
             builder
-                .RegisterAssemblyTypes(typeof(NumberCommand).GetTypeInfo().Assembly)
+                .RegisterAssemblyTypes(typeof(NumberRuleCommand).GetTypeInfo().Assembly)
                 .AsImplementedInterfaces();
 
             return builder.Build().Resolve<IMediator>();

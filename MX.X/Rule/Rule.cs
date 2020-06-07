@@ -11,7 +11,7 @@ namespace MX.X.Rule
         public Rule(string pattern) =>
             _regex = new Regex($"^{pattern}$", RegexOptions.Compiled);
 
-        public Task<bool> IsMatch(T ruleCommand) =>
-            Task.FromResult(_regex.IsMatch(ruleCommand.Expression));
+        public Task<bool> IsMatch(T rule) =>
+            Task.FromResult(_regex.IsMatch(rule.Expression));
     }
 }

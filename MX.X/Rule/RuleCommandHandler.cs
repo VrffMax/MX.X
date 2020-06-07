@@ -1,9 +1,8 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
-using MX.X.Rule;
 
-namespace MX.X.CommandHandler
+namespace MX.X.Rule
 {
     public abstract class RuleCommandHandler<T>
         : IRequestHandler<T, bool> where T : RuleCommand

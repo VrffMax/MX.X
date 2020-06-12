@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Reflection;
 using System.Threading.Tasks;
 using Autofac;
 using MediatR;
 using MX.X.Command.Number;
+using MX.X.Domain.Rule;
 
 namespace MX.X
 {
@@ -13,17 +15,13 @@ namespace MX.X
 
         public static async Task Main(string[] args)
         {
-            bool allow;
-
             var expression = " - 1 + 2 - 3 + 4 - 5 ";
 
-            do
+            foreach(var rule in GetRules(expression))
             {
-                allow = await _mediator.Send(new NumberRuleCommand { Expression = expression });
-
-                if (!allow)
+                if (!await _mediator.Send(new NumberRuleCommand { Expression = expression }))
                 {
-                    break;
+                    continue;
                 }
 
                 var values = await _mediator.Send(new NumberSplitCommand { Expression = expression });
@@ -31,7 +29,6 @@ namespace MX.X
 
                 Console.WriteLine(result);
             }
-            while (false);
 
             Console.WriteLine(nameof(Task.CompletedTask));
         }
@@ -56,6 +53,11 @@ namespace MX.X
                 .AsImplementedInterfaces();
 
             return builder.Build().Resolve<IMediator>();
+        }
+
+        private static IEnumerable<RuleCommand> GetRules(string expression)
+        {
+            yield return new NumberRuleCommand { Expression = expression };
         }
     }
 }

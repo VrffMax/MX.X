@@ -5,7 +5,7 @@ using MediatR;
 namespace MX.X.Domain.Split
 {
     public abstract class SplitCommand<R>
-        : IRequest<IEnumerable<R>>
+        : IExpression, IRequest<IEnumerable<R>>
     {
         public string Expression { get; set; }
 

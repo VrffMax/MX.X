@@ -1,11 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using Autofac;
 using MediatR;
 using MX.X.Command.Number;
-using MX.X.Domain.Rule;
+using MX.X.Domain;
 
 namespace MX.X
 {
@@ -17,17 +17,16 @@ namespace MX.X
         {
             var expression = " - 1 + 2 - 3 + 4 - 5 ";
 
-            foreach(var rule in GetRules(expression))
+            var layers = new ILayer[]
             {
-                if (!await _mediator.Send(new NumberRuleCommand { Expression = expression }))
-                {
-                    continue;
-                }
+                new NumberLayer(_mediator)
+            };
 
-                var values = await _mediator.Send(new NumberSplitCommand { Expression = expression });
-                var result = await _mediator.Send(new NumberAggregateCommand { Values = values });
+            var result = layers.Select(layer => layer.NextAsync(expression)).ToArray();
 
-                Console.WriteLine(result);
+            foreach (var item in result)
+            {
+                Console.WriteLine(await item);
             }
 
             Console.WriteLine(nameof(Task.CompletedTask));
@@ -53,11 +52,6 @@ namespace MX.X
                 .AsImplementedInterfaces();
 
             return builder.Build().Resolve<IMediator>();
-        }
-
-        private static IEnumerable<RuleCommand> GetRules(string expression)
-        {
-            yield return new NumberRuleCommand { Expression = expression };
         }
     }
 }

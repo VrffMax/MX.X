@@ -3,9 +3,9 @@ using System.Threading.Tasks;
 
 namespace MX.X.Domain.Rule
 {
-    public interface IRule<T>
-        where T : RuleCommand
+    public interface IRule<TRuleCommand>
+        where TRuleCommand : RuleCommand
     {
-        Task<IEnumerable<string>> IsMatchAsync(T rule);
+        Task<IEnumerable<string>> ExtractAsync(TRuleCommand rule);
     }
 }

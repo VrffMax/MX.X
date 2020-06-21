@@ -17,5 +17,6 @@
     <Folder Include="Domain\Split\" />
     <Folder Include="Domain\Aggregate\" />
     <Folder Include="Command\Multiply\" />
+    <Folder Include="Domain\Embed\" />
   </ItemGroup>
 </Project>

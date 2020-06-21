@@ -7,7 +7,7 @@ namespace MX.X.Command.Number
     public class NumberAggregate
         : Aggregate<NumberAggregateCommand, int, int>
     {
-        public override Task<int> HandleAsync(NumberAggregateCommand aggregate) =>
+        public override Task<int> AggregateAsync(NumberAggregateCommand aggregate) =>
             Task.FromResult(aggregate.Values.Sum());
     }
 }

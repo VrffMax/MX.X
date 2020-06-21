@@ -5,15 +5,15 @@ using MediatR;
 
 namespace MX.X.Domain.Split
 {
-    public abstract class SplitCommandHandler<T, R>
-        : IRequestHandler<T, IEnumerable<R>> where T : SplitCommand<R>
+    public abstract class SplitCommandHandler<TSplitCommand, TSplitResult>
+        : IRequestHandler<TSplitCommand, IEnumerable<TSplitResult>> where TSplitCommand : SplitCommand<TSplitResult>
     {
-        private readonly ISplit<T, R> _split;
+        private readonly ISplit<TSplitCommand, TSplitResult> _split;
 
-        public SplitCommandHandler(ISplit<T, R> split) =>
+        public SplitCommandHandler(ISplit<TSplitCommand, TSplitResult> split) =>
             _split = split;
 
-        public Task<IEnumerable<R>> Handle(T request, CancellationToken cancellationToken) =>
+        public Task<IEnumerable<TSplitResult>> Handle(TSplitCommand request, CancellationToken cancellationToken) =>
             _split.SplitAsync(request);
     }
 }

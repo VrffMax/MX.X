@@ -2,9 +2,9 @@
 
 namespace MX.X.Domain.Aggregate
 {
-    public interface IAggregate<T, P, R>
-        where T : AggregateCommand<P, R>
+    public interface IAggregate<TAggregateCommand, TSplitResult, TAggregateResult>
+        where TAggregateCommand : AggregateCommand<TSplitResult, TAggregateResult>
     {
-        Task<R> HandleAsync(T aggregate);
+        Task<TAggregateResult> AggregateAsync(TAggregateCommand aggregate);
     }
 }

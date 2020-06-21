@@ -20,15 +20,16 @@ namespace MX.X
 
             var layers = new ILayer[]
             {
-                new MultiplyLayer(_mediator)
+                new MultiplyLayer(_mediator),
+                new NumberLayer(_mediator)
             };
 
-            var result = layers.Select(layer => layer.NextAsync(expression)).ToArray();
-
-            foreach (var item in result)
+            foreach (var layer in layers)
             {
-                Console.WriteLine(await item);
+                expression = await layer.NextAsync(expression);
             }
+
+            Console.WriteLine(expression);
 
             Console.WriteLine(nameof(Task.CompletedTask));
         }

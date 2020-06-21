@@ -2,9 +2,9 @@
 
 namespace MX.X.Domain.Aggregate
 {
-    public abstract class Aggregate<T, P, R>
-        : IAggregate<T, P, R> where T : AggregateCommand<P, R>
+    public abstract class Aggregate<TAggregateCommand, TSplitResult, TAggregateResult>
+        : IAggregate<TAggregateCommand, TSplitResult, TAggregateResult> where TAggregateCommand : AggregateCommand<TSplitResult, TAggregateResult>
     {
-        public abstract Task<R> HandleAsync(T aggregate);
+        public abstract Task<TAggregateResult> AggregateAsync(TAggregateCommand aggregate);
     }
 }

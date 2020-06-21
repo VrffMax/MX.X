@@ -9,7 +9,7 @@ namespace MX.X.Command.Multiply
     public class MultiplyAggregate
         : Aggregate<MultiplyAggregateCommand, MultiplyItem, int>
     {
-        public override Task<int> HandleAsync(MultiplyAggregateCommand aggregate) =>
+        public override Task<int> AggregateAsync(MultiplyAggregateCommand aggregate) =>
             Task.FromResult(aggregate.Values.Aggregate((a, b) =>
                 b.Operation switch
                 {

@@ -3,9 +3,9 @@ using System.Threading.Tasks;
 
 namespace MX.X.Domain.Split
 {
-    public interface ISplit<T, R>
-        where T : SplitCommand<R>
+    public interface ISplit<TSplitCommand, TSplitResult>
+        where TSplitCommand : SplitCommand<TSplitResult>
     {
-        Task<IEnumerable<R>> SplitAsync(T split);
+        Task<IEnumerable<TSplitResult>> SplitAsync(TSplitCommand split);
     }
 }

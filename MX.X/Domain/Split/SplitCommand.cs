@@ -4,11 +4,11 @@ using MediatR;
 
 namespace MX.X.Domain.Split
 {
-    public abstract class SplitCommand<R>
-        : IExpression, IRequest<IEnumerable<R>>
+    public abstract class SplitCommand<TSplitResult>
+        : IExpression, IRequest<IEnumerable<TSplitResult>>
     {
         public string Expression { get; set; }
 
-        public abstract Task<R> MapItemAsync(string value);
+        public abstract Task<TSplitResult> MapItemAsync(string value);
     }
 }

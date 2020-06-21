@@ -3,9 +3,9 @@ using MediatR;
 
 namespace MX.X.Domain.Aggregate
 {
-    public abstract class AggregateCommand<P, R>
-        : IRequest<R>
+    public abstract class AggregateCommand<TSplitResult, TAggregateResult>
+        : IRequest<TAggregateResult>
     {
-        public IEnumerable<P> Values { get; set; }
+        public IEnumerable<TSplitResult> Values { get; set; }
     }
 }

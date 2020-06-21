@@ -16,7 +16,7 @@ namespace MX.X
 
         public static async Task Main(string[] args)
         {
-            var expression = "  -  10  *  -  20  /  30  ";
+            var expression = "  -  10  *  -  20  /  30  +  10  *  -  20  /  30  +  10  *  -  20  /  30  ";
 
             var layers = new ILayer[]
             {

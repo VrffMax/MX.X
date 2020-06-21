@@ -6,7 +6,7 @@ namespace MX.X.Command.Multiply
         : Rule<MultiplyRuleCommand>
     {
         public MultiplyRule()
-            : base(@"^(\s*[+-]?\s*[1-9]\d*\s*)([*/]\s*[+-]?\s*[1-9]\d*\s*)+\s*$")
+            : base(@"(\s*[+-]?\s*[1-9]\d*\s*)([*/]\s*[+-]?\s*[1-9]\d*\s*)+")
         {
         }
     }

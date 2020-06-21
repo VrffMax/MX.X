@@ -3,6 +3,7 @@ using MX.X.Domain.Aggregate;
 using MX.X.Domain.Split;
 using MediatR;
 using System.Threading.Tasks;
+using System.Linq;
 
 namespace MX.X.Domain
 {
@@ -17,17 +18,21 @@ namespace MX.X.Domain
         public Layer(IMediator mediator) =>
             _mediator = mediator;
 
-        public async Task<(string expression, bool next)> NextAsync(string expression)
+        public async Task<string> NextAsync(string expression)
         {
-            if (!await _mediator.Send(new R() { Expression = expression }))
+            var expressions = await _mediator.Send(new R() { Expression = expression });
+
+            var tasks = expressions.Select(async expression =>
             {
-                return (expression, false);
-            }
+                var values = await _mediator.Send(new S() { Expression = expression });
+                var result = await _mediator.Send(new A() { Values = values });
 
-            var values = await _mediator.Send(new S() { Expression = expression });
-            var result = await _mediator.Send(new A() { Values = values });
+                return result;
+            }).ToArray();
 
-            return (result.ToString(), true);
+            var results = await Task.WhenAll(tasks);
+
+            return string.Empty;
         }
     }
 }

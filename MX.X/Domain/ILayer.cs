@@ -4,6 +4,6 @@ namespace MX.X.Domain
 {
     public interface ILayer
     {
-        Task<(string expression, bool next)> NextAsync(string expression);
+        Task<string> NextAsync(string expression);
     }
 }

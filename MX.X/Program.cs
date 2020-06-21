@@ -4,6 +4,7 @@ using System.Reflection;
 using System.Threading.Tasks;
 using Autofac;
 using MediatR;
+using MX.X.Command.Multiply;
 using MX.X.Command.Number;
 using MX.X.Domain;
 
@@ -15,11 +16,11 @@ namespace MX.X
 
         public static async Task Main(string[] args)
         {
-            var expression = " - 1 + 2 - 3 + 4 - 5 ";
+            var expression = "  -  10  *  -  20  /  30  ";
 
             var layers = new ILayer[]
             {
-                new NumberLayer(_mediator)
+                new MultiplyLayer(_mediator)
             };
 
             var result = layers.Select(layer => layer.NextAsync(expression)).ToArray();

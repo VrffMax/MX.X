@@ -6,7 +6,7 @@ namespace MX.X.Command.Number
         : Split<NumberSplitCommand, int>
     {
         public NumberSplit()
-            : base(@"\s*[+-]?\s*[1-9]\d*")
+            : base(@"[+-]?\s*[1-9]\d*")
         {
         }
     }

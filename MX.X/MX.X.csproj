@@ -16,5 +16,6 @@
     <Folder Include="Domain\Rule\" />
     <Folder Include="Domain\Split\" />
     <Folder Include="Domain\Aggregate\" />
+    <Folder Include="Command\Multiply\" />
   </ItemGroup>
 </Project>
